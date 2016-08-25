@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WCFModel.Properties
+namespace GenericWCFClient.Properties
 {
 
 

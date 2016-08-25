@@ -5,11 +5,11 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestServiceActivation", "TestServiceActivation.csproj", "{7EAF44E3-B89D-4F45-84DD-2E22EC0197BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModel", "DomainModel\DomainModel.csproj", "{9164FC49-DE5C-4306-8E5D-DB7D2B14FF9E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModel", "..\DomainModel\DomainModel.csproj", "{9164FC49-DE5C-4306-8E5D-DB7D2B14FF9E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceActivation.Specs", "..\ServiceActivation.Specs\ServiceActivation.Specs.csproj", "{FA8490AE-790B-4A6A-A8D5-5529F5C02419}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericWCFClient", "GenericWCFClient\GenericWCFClient.csproj", "{BDBBAD5E-B4C1-4400-BD34-E5323820F640}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericWCFClient", "..\GenericWCFClient\GenericWCFClient.csproj", "{BDBBAD5E-B4C1-4400-BD34-E5323820F640}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
