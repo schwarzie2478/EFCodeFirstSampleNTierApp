@@ -1,5 +1,6 @@
 namespace DomainModel
 {
+    using log4net;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
@@ -13,9 +14,19 @@ namespace DomainModel
         // 
         // If you wish to target a different database and/or database provider, modify the 'EntityModel' 
         // connection string in the application configuration file.
+
+        // Generate sql scripts for the model:
+        // Go to Package manager console,  and run the following command
+        //
+        //    Update-Database -Script -SourceMigration:0
+        //
+        //This will deliver a new sql script to the VS
+        private ILog logger;
         public EntityModel()
             : base("name=EntityModel")
         {
+            logger = LogManager.GetLogger(typeof(EntityModel));
+
             ((IObjectContextAdapter)this).ObjectContext
                  .ObjectMaterialized += (sender, args) =>
                  {
@@ -25,6 +36,18 @@ namespace DomainModel
                          entity.State = State.Unchanged;
                      }
                  };
+            //Set up logging
+            this.Database.Log = Console.WriteLine;
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<MyEntity>()
+                .HasOptional<MyDistinctSubEntity>(e => e.Subby)
+                .WithRequired()
+                .WillCascadeOnDelete();
+
+            base.OnModelCreating(modelBuilder);
         }
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 

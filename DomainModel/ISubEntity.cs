@@ -1,10 +1,9 @@
 ﻿namespace DomainModel
 {
-    public interface IMyEntity
+    public interface ISubEntity
     {
         string Identifier { get; set; }
         string Name { get; set; }
         string Description { get; set; }
-        MyDistinctSubEntity Subby { get; set; }
     }
 }

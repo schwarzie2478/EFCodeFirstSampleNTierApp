@@ -27,6 +27,8 @@ namespace DomainModel
         public string Description { get; set; }
         [DataMember]
         public State State { get; set; }
+        [DataMember]
+        public virtual MyDistinctSubEntity Subby { get; set; }
 
     }
 }

@@ -33,10 +33,7 @@ namespace DomainModel
 
                 DbSet < TEntity > set = (DbSet<TEntity>)db.FindMyDBSet(typeof(TEntity));
                 return set.ToList();
-            }
-         
-            return null;
-
+            }         
         }
 
         public  List<TEntity> GetAll(int pageSize, int currentPageIndex, ref int totalRecords)

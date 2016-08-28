@@ -6,9 +6,9 @@ namespace DomainModel
     public enum State
     {
         [EnumMember]
-        Added,
-        [EnumMember]
         Unchanged,
+        [EnumMember]
+        Added,
         [EnumMember]
         Modified,
         [EnumMember]
