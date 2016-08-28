@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DomainModel
-{ 
+{
     [DataContract]
     public class MyEntity : IEntityBase, IMyEntity
     {
@@ -16,6 +16,7 @@ namespace DomainModel
             Identifier = "Hello";
             Name = "From";
             Description = "MyEntity";
+            State = State.Unchanged;
         }
         [DataMember]
         [Key]
@@ -24,6 +25,8 @@ namespace DomainModel
         public string Name { get; set; }
         [DataMember]
         public string Description { get; set; }
+        [DataMember]
+        public State State { get; set; }
 
     }
 }
