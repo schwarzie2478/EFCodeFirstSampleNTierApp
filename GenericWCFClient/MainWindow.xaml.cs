@@ -39,7 +39,7 @@ namespace GenericWCFClient
         private void button_Click(object sender, RoutedEventArgs e)
         {
             var myBinding = new BasicHttpBinding();
-            var myEndpoint = new EndpointAddress("http://localhost:45688/MyService.svc");
+            var myEndpoint = new EndpointAddress("http://MyApp/MyService.svc");
             var myChannelFactory = new ChannelFactory<IEntityEditService<MyEntity>>(myBinding, myEndpoint);
 
 
@@ -52,7 +52,7 @@ namespace GenericWCFClient
                 entity.Description = "Hello there";
                 entity.Name = "Default";
                 entity.Identifier = DateTime.Now.Ticks.ToString() ;
-                client.Insert(entity);
+                //client.Insert(entity);
                 List<MyEntity> result = client.GetAll();
                 if(result == null)
                 {
@@ -60,8 +60,9 @@ namespace GenericWCFClient
                 }
                 ((ICommunicationObject)client).Close();
             }
-            catch
+            catch(Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 if (client != null)
                 {
                     ((ICommunicationObject)client).Abort();
@@ -69,7 +70,7 @@ namespace GenericWCFClient
             }
 
             var myBinding2 = new BasicHttpBinding();
-            var myEndpoint2 = new EndpointAddress("http://localhost:45688/YourService.svc");
+            var myEndpoint2 = new EndpointAddress("http://MyApp/YourService.svc");
             var myChannelFactory2 = new ChannelFactory<IEntityEditService<YourEntity>>(myBinding2, myEndpoint2);
             IEntityEditService<YourEntity> client2 = null;
 
