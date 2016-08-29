@@ -23,10 +23,6 @@ namespace DomainModel
         [DataMember]
         public State State { get; set; }
 
-        public string MyIdentifier { get; set; }
 
-        [Required]
-        [ForeignKey("MyIdentifier")]
-        public virtual MyEntity MyEntity { get; set; }
     }
 }

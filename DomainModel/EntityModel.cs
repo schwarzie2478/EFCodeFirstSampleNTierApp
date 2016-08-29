@@ -43,9 +43,7 @@ namespace DomainModel
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MyEntity>()
-                .HasOptional<MyDistinctSubEntity>(e => e.Subby)
-                .WithRequired()
-                .WillCascadeOnDelete();
+                .HasOptional<MyDistinctSubEntity>(e => e.Subby);
 
             base.OnModelCreating(modelBuilder);
         }
@@ -100,7 +98,8 @@ namespace DomainModel
                 default:
                     return EntityState.Unchanged;
             }
-        }
+        }
+
 
         private static void CheckForEntitiesWithoutStateInterface(EntityModel context)
         {
