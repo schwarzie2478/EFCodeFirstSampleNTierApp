@@ -20,6 +20,14 @@ namespace DomainModel
                 {
                     return typeof(MyEntity);
                 }
+                if (typeName == typeof(YourEntity).Name)
+                {
+                    return typeof(YourEntity);
+                }
+                if (typeName == typeof(MyDistinctSubEntity).Name)
+                {
+                    return typeof(MyDistinctSubEntity);
+                }
             }
 
             return knownTypeResolver.ResolveName(typeName, typeNamespace, declaredType, null) ?? declaredType;
@@ -27,7 +35,7 @@ namespace DomainModel
 
         public override bool TryResolveType(Type type, Type declaredType, DataContractResolver knownTypeResolver, out XmlDictionaryString typeName, out XmlDictionaryString typeNamespace)
         {
-            if (type == typeof(IMyEntity))  //|| type == typeof(...)
+            if (type == typeof(MyEntity) || type == typeof(MyDistinctSubEntity) || type == typeof(YourEntity))  
             {
                 XmlDictionary dictionary = new XmlDictionary();
                 typeName = dictionary.Add(type.Name);

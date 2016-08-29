@@ -38,6 +38,7 @@ namespace DomainModel
                  };
             //Set up logging
             this.Database.Log = Console.WriteLine;
+            this.Configuration.ProxyCreationEnabled = false;
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

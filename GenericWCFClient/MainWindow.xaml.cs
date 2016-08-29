@@ -38,8 +38,16 @@ namespace GenericWCFClient
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
+            TryMyBinding();
+
+
+
+        }
+
+        private static void TryMyBinding()
+        {
             var myBinding = new BasicHttpBinding();
-            var myEndpoint = new EndpointAddress("http://MyApp/MyService.svc");
+            var myEndpoint = new EndpointAddress("http://localhost:45688/MyService.svc");
             var myChannelFactory = new ChannelFactory<IEntityEditService<MyEntity>>(myBinding, myEndpoint);
 
 
@@ -49,18 +57,19 @@ namespace GenericWCFClient
             {
                 client = myChannelFactory.CreateChannel();
                 MyEntity entity = new MyEntity();
-                entity.Description = "Hello there";
-                entity.Name = "Default";
-                entity.Identifier = DateTime.Now.Ticks.ToString() ;
-                //client.Insert(entity);
+                entity.Description = "Testing there";
+                entity.Name = "Testing";
+                entity.Identifier = DateTime.Now.Ticks.ToString();
+                entity.Subby = new MyDistinctSubEntity { Name = "Subby", Description = "Subby Description", Identifier = DateTime.Now.Ticks.ToString() };
+                client.Insert(entity);
                 List<MyEntity> result = client.GetAll();
-                if(result == null)
+                if (result == null)
                 {
                     throw new ArgumentNullException();
                 }
                 ((ICommunicationObject)client).Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 if (client != null)
@@ -68,9 +77,12 @@ namespace GenericWCFClient
                     ((ICommunicationObject)client).Abort();
                 }
             }
+        }
 
+        private static void TryYourBinding()
+        {
             var myBinding2 = new BasicHttpBinding();
-            var myEndpoint2 = new EndpointAddress("http://MyApp/YourService.svc");
+            var myEndpoint2 = new EndpointAddress("http://localhost:45688/YourService.svc");
             var myChannelFactory2 = new ChannelFactory<IEntityEditService<YourEntity>>(myBinding2, myEndpoint2);
             IEntityEditService<YourEntity> client2 = null;
 
@@ -91,8 +103,11 @@ namespace GenericWCFClient
                     ((ICommunicationObject)client2).Abort();
                 }
             }
+        }
 
-
+        private void button_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            TryYourBinding();
         }
     }
 }

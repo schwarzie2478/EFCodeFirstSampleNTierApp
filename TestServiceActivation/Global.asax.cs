@@ -16,6 +16,9 @@ namespace TestServiceActivation
         protected void Application_Start(object sender, EventArgs e)
         {
             Start.container.Kernel.AddFacility<WcfFacility>();
+            Start.container.Kernel.Register(Component.For<IBusinessController<MyEntity>>()
+                .ImplementedBy<MyEntityBusinessController>());
+
             Start.container.Kernel.Register(Component.For<IEntityEditService<YourEntity>>()
                 .ImplementedBy<GenericService<YourEntity, IBusinessController<YourEntity>>>()
                 .Named("YourEntityService"));
