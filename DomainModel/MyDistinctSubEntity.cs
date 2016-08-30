@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace DomainModel
 {
     [DataContract]
-    public class MyDistinctSubEntity : ISubEntity, IEntityBase
+    public class MyDistinctSubEntity : IEntityBase
     {
 
         [DataMember]
@@ -20,6 +20,7 @@ namespace DomainModel
         public string Description { get; set; }
         [DataMember]
         public string Name { get; set; }
+        [NotMapped]
         [DataMember]
         public State State { get; set; }
 

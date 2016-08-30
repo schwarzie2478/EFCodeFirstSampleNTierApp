@@ -68,7 +68,7 @@ namespace DomainModel
             return null;
         }
 
-        private static void ApplyChanges<TEntity>(TEntity root)
+        public static void ApplyChanges<TEntity>(TEntity root)
          where TEntity : class, IEntityBase
         {
             using (var context = new EntityModel())
@@ -82,6 +82,7 @@ namespace DomainModel
                 {
                     IEntityBase stateInfo = entry.Entity;
                     entry.State = ConvertState(stateInfo.State);
+                    stateInfo.State = State.Unchanged;
                 }
                 context.SaveChanges();
             }

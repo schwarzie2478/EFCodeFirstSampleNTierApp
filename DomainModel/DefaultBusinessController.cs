@@ -12,6 +12,12 @@ namespace DomainModel
     {
         public TEntity Insert(TEntity entity)
         {
+            EntityModel.ApplyChanges<TEntity>(entity);
+            return entity; //State has been set to unchanged
+
+        }
+        public TEntity InsertSimple(TEntity entity)
+        {
             using (var db = new EntityModel())
             {
                 DbSet<TEntity> set = (DbSet<TEntity>)db.FindMyDBSet(typeof(TEntity));
@@ -32,6 +38,7 @@ namespace DomainModel
             {
 
                 DbSet < TEntity > set = (DbSet<TEntity>)db.FindMyDBSet(typeof(TEntity));
+                set.Select(s => s);
                 return set.ToList();
             }         
         }
